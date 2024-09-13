@@ -1,0 +1,34 @@
+.skeleton{
+    display: grid;
+    grid-template-rows: 3fr 2.2rem 1.5rem;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--bgCardColor);
+    border-radius: var(--borderrMid);
+}
+.line{
+    position: relative;
+    background-color: var(--bgColor);
+    border-radius: inherit;
+    overflow: hidden;
+}
+.line::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -33%;
+    width: 40%;
+    height: 100%;
+    background-image: linear-gradient(90deg, var(--bgColor), var(--bgCardColor), var(--bgColor));
+    animation: loader-skeleton 1.5s infinite;
+}
+
+@keyframes loader-skeleton {
+    0%{
+        left: -33%;
+    }
+    100%{
+        left: 133%;
+    }
+    
+}

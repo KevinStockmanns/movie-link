@@ -1,0 +1,33 @@
+<main class="main content">
+    <app-back-btn></app-back-btn>
+    <section class="search-sec">
+        <div class="search" style="view-transition-name: search;">
+            <input #search type="text" (keyup)="handleValue(search, $event)">
+            <div class="search-placeholder">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Buscar...</span>
+            </div>
+            <select name="typeMedia" id="typeMedia" (change)="handleTypeMedia($event)">
+                <option value="movie" selected>Pelicula</option>
+                <option value="tv">Serie</option>
+                <option value="person">Actor</option>
+            </select>
+            <button (click)="handleSubmit($event)" ><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="search-results">
+            @if (data == undefined) {
+                <p>Ingresa lo que quieres buscar.</p>
+            }
+            @for (result of data; track result.id) {
+                @if (typeMedia == 'person') {
+                    <person-card [dimensiones]="{ancho: '100%', alto: '300px'}" [data]="toPersona(result)"></person-card>
+                }@else {
+                    <movie-card [dimensiones]="{ancho: '100%', alto: '300px'}" [data]="toPelicula(result)"></movie-card>
+                }
+            }
+            @if (data != undefined && data.length == 0) {
+                <p>No se encontraron resultados.</p>
+            }
+        </div>
+    </section>
+</main>

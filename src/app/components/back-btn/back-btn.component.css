@@ -1,0 +1,17 @@
+.back-btn{
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    transition: var(--timeFast);
+    background-color: var(--bgAlphaColor);
+    z-index: 900;
+}
+.back-btn:active{
+    background-color: var(--textAlphaColor);
+}

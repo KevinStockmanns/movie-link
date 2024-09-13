@@ -1,0 +1,108 @@
+@if(data){
+    <section class="movie-details" [ngStyle]="{'background-image': 'url(' + imgPath + ')'}">
+        <app-back-btn></app-back-btn>
+        <article class="movie-details-content">
+            @if(typeMedia == 'movie'){
+                <div class="movie-details-header">
+                    <div class="img" [ngStyle]="{'background-image': 'url(' + imgPath + ')'}"></div>
+                    <h2 class="movie-details-title">{{toPeliDet().title}}</h2>
+                </div>
+                <div class="movie-details-body">
+                    <div class="movie-details-body-tags">
+                        <span class="movie-details-date" [title]="toPeliDet().release_date">
+                            @if (isNew(toPeliDet().release_date)) { <span class="new">Nuevo</span> }
+                            {{toPeliDet().release_date.slice(0,4)}}
+                        </span>
+                        @if (toPeliDet().runtime) { <span>{{toPeliDet().runtime}} min</span> }
+                    </div>
+                    <p>{{toPeliDet().overview}}</p>
+                    @if (toPeliDet().genres.length > 0) {
+                        <div class="movie-details-genres">
+                            @for (g of toPeliDet().genres; track g.id) {
+                                <span>{{g.name}}</span>
+                            }
+                        </div>
+                    }
+                    @if (carouselContent && toPeliculas().results.length > 0) {
+                        <p class="details-subtitle">Similares</p>
+                        <div class="details-carousel">
+                            @for (peli of toPeliculas().results; track peli.id) {
+                                <movie-card [data]="peli" [dimensiones]="{ancho: '200px', alto: '300px'}" [typeMedia]="typeMedia"></movie-card>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+            @if(typeMedia == 'tv') {
+                <div class="movie-details-header">
+                    <div class="img" [ngStyle]="{'background-image': 'url(' + imgPath + ')'}"></div>
+                    <h2 class="movie-details-title">{{toSerieDet().name}}</h2>
+                </div>
+                <div class="movie-details-body">
+                    <div class="movie-details-body-tags">
+                        <span class="movie-details-date" [title]="toSerieDet().first_air_date">
+                            @if (isNew(toSerieDet().first_air_date)) { <span class="new">Nuevo</span> }
+                            {{toSerieDet().first_air_date.slice(0,4)}}
+                        </span>
+                        @if (toSerieDet().episode_run_time.length > 0) { <span>{{toSerieDet().episode_run_time[0]}} min</span> }
+                        <span>{{toSerieDet().in_production ? 'En producción' : 'Finalizado' | titlecase}}</span>
+    
+                    </div>
+                    <p>{{toSerieDet().overview}}</p>
+                    @if (toSerieDet().genres.length > 0) {
+                        <div class="movie-details-genres" title="Generos">
+                            @for (g of toSerieDet().genres; track g.id) {
+                                <span>{{g.name}}</span>
+                            }
+                        </div>
+                    }
+                    @if (carouselContent && toPeliculas().results.length > 0) {
+                        <p class="details-subtitle">Similares</p>
+                        <div class="details-carousel">
+                            @for (serie of toPeliculas().results; track serie.id) {
+                                <movie-card [data]="serie" [dimensiones]="{ancho: '200px', alto: '300px'}" [typeMedia]="typeMedia"></movie-card>
+                            }
+                        </div>  
+                    }
+    
+                    <!-- @if (toSerie().seasons.length > 0) {
+                        <div class="movie-details-seasons">
+                            @for (season of toSerie().seasons; track season.id) {
+                                @if (season.air_date) {
+                                    <div class="movie-details-season" [ngStyle]="{'background-image': 'url(' + imgBase + season.poster_path + ')'}">
+                                        <p>{{season.name}}</p>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    } -->
+                </div>
+            }
+            @if(typeMedia == 'person'){
+                <div class="movie-details-header person">
+                    <div class="img" [ngStyle]="{'background-image': 'url(' + imgPath + ')'}"></div>
+                    <h2 class="movie-details-title">{{toPersonDet().name}}</h2>
+                </div>
+                <div class="movie-details-body">
+                    <div class="movie-details-body-tags">
+                        @if(toPersonDet().gender == 1) { <span>Femenino</span> }
+                        @if(toPersonDet().gender == 2) { <span>Masculino</span> }
+                        @if(toPersonDet().gender == 1 && toPersonDet().known_for_department == 'Acting') { <span>Actriz</span> }
+                        @if(toPersonDet().gender == 2 && toPersonDet().known_for_department == 'Acting') { <span>Actor</span> }
+                    </div>
+                    <p>{{toPersonDet().biography}}</p>
+                    <p>Fecha de nacimiento: {{toPersonDet().birthday}}</p>
+                    @if (carouselContent && toActorWorks().cast.length > 0) {
+                        <p class="details-subtitle">Ha participado en:</p>
+                        <div class="details-carousel">
+                            @for (w of toActorWorks().cast; track w.id) {
+                                <movie-card [data]="toPeli(w)" [dimensiones]="{ancho: '200px', alto: '300px'}" [typeMedia]="w.media_type"></movie-card>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+        </article>
+        
+    </section>
+}

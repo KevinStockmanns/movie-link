@@ -1,0 +1,87 @@
+.movie-card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: .5rem;
+    border-radius: var(--borderrMid);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-blend-mode: soft-light;
+    background-color: var(--bgCardColor);
+}
+.movie-card-top{
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    display: flex;
+    gap: .5rem;
+}
+.movie-card-top > *{
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    padding: .2rem .5rem;
+    font-weight: bold;
+    font-size: .8rem;
+    border-radius: var(--borderrLow);
+    background-color: var(--textAlphaColor);
+    color: var(--textColor);
+}
+.movie-card-top .adult{
+    background-color: var(--bgColor);
+    
+}
+.movie-card-top .new{
+    padding: 0 .5rem;
+    border-radius: inherit;
+    background-color: var(--greenColor);
+}
+.movie-card-top .add-favorite{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 2rem;
+    height: 2rem;*/
+    transition: var(--timeFast);
+}
+.add-favorite.inFav{
+    background-color: var(--textColor);
+    color: var(--mainColor);
+}
+.add-favorite i{
+    font-size: 1.2rem;
+}
+.vote{
+    position: absolute;
+    top: .5rem;
+    left: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    font-size: .65rem;
+    font-weight: bold;
+    background-color: var(--bgColor);
+    border-radius: 50%;
+    border: 3px solid var(--textColor);
+}
+.vote.green{
+    background-color: var(--greenColor);
+
+}
+.vote.yellow{
+    background-color: var(--yellowColor);
+}
+.vote.red{
+    background-color: var(--redColor);
+    
+}
+.movie-title{
+    font-size: clamp(1.4rem, 7vw, 1.7rem);
+}
+.movie-character{
+    font-size: .8rem;
+}

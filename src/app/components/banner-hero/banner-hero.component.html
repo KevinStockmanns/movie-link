@@ -1,0 +1,45 @@
+<section class="banner" [ngStyle]="{'background-image': 'url(' + actualImg + ')'}">
+    <article class="banner-content content">
+        <section class="banner-hero">
+            @if(actualIndex != 0){
+                <i class="fa-solid fa-chevron-left arrow arrow-left cursor" (click)="moverBanner(true, -1)"></i>
+            }
+            @for (peli of data.peliculas; track peli.id; let i = $index) {
+                <div class="banner-card" [class.active]="actualIndex == i" [ngStyle]="{'background-image': 'url(' + imgHdPath + peli.backdrop_path + ')'}">
+                    <div>
+                        <div class="banner-card-top">
+                            @if (peli.adult) { <span class="banner-adult">+18</span> }
+                            <span class="banner-date">
+                                @if (isNew(peli.release_date)) { <span class="new">Nuevo</span> }
+                                <span>{{peli.release_date.slice(0,4)}}</span>
+                            </span>
+                            <span class="add-favorite cursor" [class.inFav]="inFav[i]" (click)="toggleFav($event, i)"
+                                [title]="inFav[i] ? 'Eliminar de Favoritos' : 'Agregar a Favoritos'">
+                                <i class="fa-solid fa-star"></i>
+                            </span>
+                        </div>
+                        <h2 class="banner-title">{{peli.original_title || peli.title}}</h2>
+                    </div>
+                    <div>
+                        
+                        <p class="banner-desc">{{peli.overview}}</p>
+                        <div class="banner-links">
+                            <app-button [routerLink]="'movie/' + peli.id" text="Ver Detalles"><i class="fa-solid fa-info"></i></app-button>
+                        </div>
+                    </div>
+                </div>
+            }
+            @if (actualIndex < data.peliculas.length - 1) {
+                <i class="fa-solid fa-chevron-right arrow arrow-right cursor" (click)="moverBanner(true, 1)"></i>
+            }
+            
+            @if(data.peliculas.length>0){
+                <div class="indicator">
+                    @for (peli of data.peliculas; track peli.id; let i = $index) {
+                        <span class="cursor" [class.active]="actualIndex == i" (click)="moverBanner(false, i)"></span>
+                    }
+                </div>
+            }
+        </section>
+    </article>
+</section>

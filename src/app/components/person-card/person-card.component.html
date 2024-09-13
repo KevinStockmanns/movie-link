@@ -1,0 +1,30 @@
+<div class="person-card cursor" [ngStyle]="{
+    'background-image': 'url(' + imgPath + data?.profile_path + ')',
+    'height': dimensiones.alto,
+    'width': dimensiones.ancho
+}" (click)="redirectTo($event)">
+        <div class="person-card-top non-redirect">
+            <span #favTarget class="add-favorite" [class.inFav]="inFav" (click)="toggleFav(favTarget)">
+                <i class="fa-solid fa-star"></i>
+            </span>
+        </div>
+    <div class="person-body">
+        <p class="person-name">{{data?.name}}</p>
+        @defer(on viewport) {
+            <p class="person-movies-title">Ha participado en</p>
+            <div class="person-movies">
+                <!-- @for (peli of data; track peli.id) {} -->
+                @for (peli of data?.known_for; track peli.id) {
+                    <div class="person-movie">
+                        <img [src]="imgPath + peli.backdrop_path" [alt]="peli.title">
+                        <p>{{peli.title || peli.original_title || peli.name}}</p>
+                    </div>
+                }
+            </div>
+        }@placeholder {
+            <div class="skeleton-container">
+                <app-skeleton #skeletonRef [dimensiones]="{alto:'100%', ancho:'100%'}" [estilos]="estilosSkeleton"></app-skeleton>
+            </div>
+        }
+    </div>
+</div>

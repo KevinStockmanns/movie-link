@@ -1,0 +1,19 @@
+@if(href != ''){
+    <a [href]="href" class="btn cursor">
+        <ng-content></ng-content>
+        <span>{{text}}</span>
+    </a>
+}
+@if (routerLink != '') {
+    <a [routerLink]="routerLink" class="btn cursor">
+        <ng-content></ng-content>
+        <span>{{text}}</span>
+    </a>
+}
+@if (href == '' && routerLink == '') {
+    <button class="btn cursor">
+
+        <ng-content></ng-content>
+        <span>{{text}}</span>
+    </button>
+}

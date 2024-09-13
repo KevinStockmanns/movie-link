@@ -1,0 +1,72 @@
+<app-header></app-header>
+<banner-hero></banner-hero>
+<a routerLink="search" class="search cursor" style="view-transition-name: search;" >
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <span>Buscar <span class="search-word"></span></span>
+</a>
+<section class="section-cards content">
+
+  @defer(on viewport){
+    <cards-container 
+      [request]="{typeMedia: 'tv', topic: 'top_rated', card: 'simple-movie-card', title: 'Top Mejores series'}"
+      [dimensiones]="{alto: '300px', ancho: '230px'}"
+    ></cards-container>
+  }@placeholder{
+    <container-skeleton [dimensiones]="{alto: '300px', ancho: '230px'}"></container-skeleton>
+  }
+
+
+  @defer(on viewport){
+    <cards-container 
+      [request]="{typeMedia: 'movie', topic: 'top_rated', card: 'simple-movie-card', title: 'Top Mejores peliculas'}"
+      [dimensiones]="{alto: '300px', ancho: '230px'}"
+    ></cards-container>
+  }@placeholder{
+    <container-skeleton [dimensiones]="{alto: '300px', ancho: '230px'}"></container-skeleton>
+  }
+
+
+  
+  @defer(on viewport){
+    <cards-container 
+      [request]="{typeMedia: 'tv', topic: 'popular', card: 'simple-movie-card', title: 'Series Populares'}"
+      [dimensiones]="{alto: '300px', ancho: '230px'}"
+    ></cards-container>
+  }@placeholder{
+    <container-skeleton [dimensiones]="{alto: '300px', ancho: '230px'}"></container-skeleton>
+  }
+
+
+  @defer(on viewport){
+    <cards-container 
+      [request]="{typeMedia: 'movie', topic: 'upcoming', card: 'simple-movie-card', title: 'Peliculas recientes'}"
+      [dimensiones]="{alto: '300px', ancho: '230px'}"
+    ></cards-container>
+  }@placeholder{
+    <container-skeleton [dimensiones]="{alto: '300px', ancho: '230px'}"></container-skeleton>
+  }
+
+
+  @defer(on viewport){
+    <cards-container 
+      [request]="{ typeMedia: 'movie', topic: 'now_playing', card: 'simple-movie-card', title: 'Top Pelicualas actuales'}"
+      alto="300px"
+      [dimensiones]="{alto: '300px', ancho: '230px'}"
+    ></cards-container>
+  }@placeholder{
+    <container-skeleton [dimensiones]="{alto: '300px', ancho: '230px'}"></container-skeleton>
+  }
+
+  @defer (on viewport) {
+    <cards-container 
+    [request]="{typeMedia: 'movie', topic: 'people', card: 'person-card', title: 'Top Mejores actores'}"
+    alto="300px"
+    [dimensiones]="{alto: '480px', ancho: '350px'}"
+  ></cards-container>
+  }@placeholder {
+    <container-skeleton [dimensiones]="{alto:'480px', ancho:'350px'}"></container-skeleton>
+  }
+  
+
+</section>
+<app-footer></app-footer>

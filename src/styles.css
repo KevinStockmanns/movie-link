@@ -1,0 +1,71 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+    --mainColor: #8A2BE2;
+    --bgCardColor: #222;
+    --bgColor: #111;
+    --bgAlphaColor: #1119;
+
+    --textColor: #fafafa;
+    --textAlphaColor: #fafafa98;
+
+    --headerHeight: 50px;
+    --borderrLow: .3rem;
+    --borderrMid: .5rem;
+    --borderrHigh: 1rem;
+
+    --timeFast: .3s;
+    --timeMid: .5s;
+    --timeLow: 1s;
+
+    --greenColor: #228B22;
+    --redColor: #DC143C;
+    --yellowColor: #DAA520;
+}
+
+*,*::after,*::before{
+    box-sizing: border-box;
+}
+
+
+a{
+    text-decoration: none;
+    text-transform: none;
+    color: var(--textColor);
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--textColor);
+    background-color: var(--bgColor);
+}
+button{
+    font-family: inherit;
+    outline: none;
+    border: none;
+}
+h1,h2,h3,h5,h6,p{
+    padding: 0;
+    margin: 0;
+}
+
+.content{
+    position: relative;
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+.cursor, a, button{
+    cursor: default;
+}
+.main{
+    min-height: calc(100vh - var(--headerHeight) * 2);
+}
+
+
+@media screen and (min-width:500px) {
+    .cursor, a, button{
+        cursor: pointer;
+    }
+}

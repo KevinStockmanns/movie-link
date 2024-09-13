@@ -1,0 +1,22 @@
+header{
+    position: sticky;
+    top: 0;
+    background-color: var(--bgCardColor);
+    z-index: 1000;
+}
+.header-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--headerHeight);
+}
+.logo{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--mainColor);
+}
+.nav{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}

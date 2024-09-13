@@ -1,0 +1,19 @@
+@if(data){
+        <h3 class="title">{{request?.title| titlecase}}</h3>
+        <article class="cards-container">
+            @for (dato of data; track dato.id) {
+                @if(request?.card == 'simple-movie-card'){ 
+                    @if (request?.typeMedia == 'movie') {
+                        <movie-card [typeMedia]="request?.typeMedia" [data]="convertirAPelicula(dato)" [dimensiones]="dimensiones"></movie-card>
+                    }@else {
+                        <movie-card [typeMedia]="request?.typeMedia" [data]="convertirAPelicula(dato)" [dimensiones]="dimensiones"></movie-card>
+                    }
+                 }
+                @if (request?.card == 'person-card') { 
+                    <person-card  [data]="convertirAPersona(dato)" [dimensiones]="dimensiones"></person-card>
+                 }
+            }
+            
+        </article>
+        
+}

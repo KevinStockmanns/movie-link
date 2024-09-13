@@ -1,0 +1,16 @@
+.skeleton-container{
+    display: grid;
+    gap: 1rem;
+}
+.skeleton-container > *:first-child{
+    width: 30%;
+    min-width: 250px;
+    height: 1.5rem;
+    border-radius: var(--borderrMid);
+    border: 5px solid var(--bgCardColor);
+    background-color: var(--bgColor);
+}
+.skeleton-container > *:last-child{
+    display: flex;
+    gap: 1rem;
+}

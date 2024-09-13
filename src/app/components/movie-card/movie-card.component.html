@@ -1,0 +1,33 @@
+<a class="movie-card" [ngStyle]="{
+    'background-image': 'url(' + imgPath + data?.poster_path || data?.backdrop_path + ')',
+    'height': dimensiones.alto,
+    'width': dimensiones.ancho
+}" (click)="redirectToDetails($event)">
+    @if (data?.vote_average) {
+        <div class="vote" [ngClass]="{
+            'green': data && data.vote_average >= 7.5,
+            'yellow': data && data.vote_average < 7.5 && data.vote_average >=5,
+            'red': data && data.vote_average <5
+        }">
+            {{data && data.vote_average ? redondear(data.vote_average*10)+'%' : ''}}
+        </div>
+    }
+    <div class="movie-card-top">
+        @if (data?.adult) { <span class="adult">+18</span> }
+        <span class="date">
+            @if (isNew(data?.release_date || data?.first_air_date)) { <span class="new">Nuevo</span> }
+            <span>{{(data?.release_date || data?.first_air_date)?.slice(0,4)}}</span>
+        </span>
+        <span class="add-favorite non-redirect" [class.inFav]="inFav" title="Añadir a Favoritos" (click)="toggleFav($event)">
+            <i class="fa-solid fa-star"></i>
+        </span>
+    </div>
+    <div class="movie-card-header">
+        <p class="movie-title">{{data?.title || data?.original_title || data?.name}}</p>
+        @if (data?.character) { <p class="movie-character">Personaje: {{data?.character}}</p> }
+    </div>
+    <div class="movie-card-body">
+
+    </div>
+
+</a>
